@@ -29,6 +29,7 @@
                 <div class="col-12">
                     <header><?php require_once('header.php') ?></header>
                 </div>
+                <input type="hidden" name="">
             </div>
             <div class="row">
                 <div class="col-12">

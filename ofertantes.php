@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -224,6 +225,24 @@
                                 <div class="bg-light border rounded-3 p-3">
                                     <div class="d-grid gap-2 pb-5">
                                         <button class="btn btn-primary" id="modal" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Agregar Ofertante</button>
+                                        <form method="POST" action="./downl.php">
+                                            <?php 
+                                                $data= array();
+                                            ?>
+                                            <input type="hidden" name="data" value=<?php $data ?>>
+                                            <button class="btn btn-primary excelxd" type="submit">Descargar excel</button>
+                                        </form>
+                                        <style>
+                                            .excelxd{
+                                                background-color: green;
+                                                border: 1px solid green;
+                                            }
+                                            .excelxd:hover{
+                                                background-color: black;
+                                                border: 1px solid green;
+                                            }
+
+                                        </style>
                                     </div>
 
                                     <table class="table table-hover">
@@ -238,7 +257,9 @@
                                         </thead>
                                         <tbody>
                                             <?php
+                                            
                                             while ($row = mysqli_fetch_array($result)) {
+                                                $data = mysqli_fetch_assoc($result)
                                             ?>
                                                 <tr>
                                                     <td><?php echo $row['nombres']; ?> <?php echo $row['apellidos']; ?></td>
@@ -248,7 +269,9 @@
                                                         else echo "Inactivo"; ?></td>
                                                     <td><a href="ofertantes.php?editar=<?php echo $row['id_usuario']; ?>">Editar</a> | <a href="ofertantes.php?eliminar=true&id_usuario=<?php echo $row['id_usuario']; ?>&id_persona=<?php echo $row['id_persona']; ?>">Eliminar</a></td>
                                                 </tr>
-                                            <?php } ?>
+                                            <?php } 
+                
+                                            ?>
                                         </tbody>
                                     </table>
                                 </div>
@@ -266,6 +289,7 @@
                                 </div>
                                 <div class="modal-body">
                                     <form class="row g-3" action="ofertantes.php" method="POST">
+                                                
                                         <?php
                                         if (isset($_GET["editar"])) {
 
